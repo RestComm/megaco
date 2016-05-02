@@ -1,0 +1,123 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.mobicents</groupId>
+		<artifactId>restcomm-parent</artifactId>
+		<version>2.27.36</version>
+	</parent>
+	
+	<groupId>org.mobicents.protocols</groupId>
+	<artifactId>megaco-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	
+	<packaging>pom</packaging>
+
+	<name>Restcomm MEGACO Stack :: ${pom.artifactId}</name>
+	<properties>
+		<maven.test.skip>true</maven.test.skip>
+		<release.name>
+			${release.name.prefix}${parent.version}${release.name.suffix}
+		</release.name>
+	</properties>
+	<modules>
+		<module>megaco-api</module>
+		<module>megaco-impl</module>
+	</modules>
+	
+	
+	<developers>
+		<developer>
+			<id>oleg.kulikoff</id>
+			<name>Oleg Kulikoff</name>
+			<email>oleg.kulikoff@gmail.com</email>
+			<organization>JBoss/Red Hat</organization>
+			<organizationUrl>http://www.redhat.com/</organizationUrl>
+			<roles>
+				<role>Active Developer</role>
+			</roles>
+			<timezone>+3</timezone>
+		</developer>
+		<developer>
+			<id>amit.bhayani</id>
+			<name>Amit Bhayani</name>
+			<email>amit.bhayani@gmail.com</email>
+			<organization>JBoss/Red Hat</organization>
+			<organizationUrl>http://www.redhat.com/</organizationUrl>
+			<roles>
+				<role>Active Developer</role>
+			</roles>
+			<timezone>+5.5</timezone>
+		</developer>
+		<developer>
+			<id>baranowb</id>
+			<name>Bartosz Baranowski</name>
+			<email>baranowb@gmail.com</email>
+			<organization>JBoss/Red Hat</organization>
+			<organizationUrl>http://www.redhat.com/</organizationUrl>
+			<roles>
+				<role>Active Developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+	<licenses>
+		<license>
+			<name>GNU GENERAL PUBLIC LICENSE</name>
+			<url>http://www.gnu.org/licenses/gpl.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<profiles>
+		<profile>
+			<id>maven-release</id>
+			<modules>
+				<module>megaco-api</module>
+				<module>megaco-impl</module>
+			</modules>
+		</profile>
+	</profiles>
+	
+	<scm>
+		<connection>scm:git:https://github.com/RestComm/megaco.git</connection>
+		<developerConnection>scm:git:git@github.com:RestComm/megaco.git</developerConnection>
+		<url>https://github.com/RestComm/megaco</url>
+	</scm>
+	
+	<!--  -->
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<groupId>org.mobicents.tools</groupId>
+				<version>
+					${mobicents.tools.mavenplugin.eclipse.version}
+				</version>
+				<inherited>false</inherited>
+				<executions />
+				<configuration>
+					<classpathExcludes>
+						<exclude>xml-apis:xml-apis</exclude>
+						<exclude>jtidy:jtidy</exclude>
+					</classpathExcludes>
+					<resolveTransitiveDependencies>
+						true
+					</resolveTransitiveDependencies>
+					<eclipseProjectName>
+						restcomm-megaco-stack
+					</eclipseProjectName>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<preparationGoals>clean install</preparationGoals>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>	
+</project>
